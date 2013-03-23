@@ -79,17 +79,26 @@ describe('An outline and content containing keys', function () {
     };
   });
 
-  describe('when fused', function () {
+  describe('fused with aliasing', function () {
     before(function () {
       // Fused outline/content
       this.fusedObject = objectFusion({
         outline: this.outline,
-        content: this.content
+        content: this.content,
+        'property proxy': function (prop) {
+          // If it is an alias, look it up
+          if (typeof prop === 'string') {
+            prop = this.getProperty(prop);
+          }
+
+          // Return the property
+          return prop;
+        }
       });
     });
 
-    it('can be used for aliasing', function () {
-      // Assert the output is what we anticipated
+    // Assert the output is what we anticipated
+    it('observes aliasing', function () {
       var content = this.content;
       console.log(this.fusedObject);
       assert.deepEqual({
