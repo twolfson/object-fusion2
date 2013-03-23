@@ -1,6 +1,9 @@
 var objectFusion = require('../lib/object-fusion.js'),
     assert = require('assert');
 
+// TODO: Test preservation of ordering
+// TODO: Test optional expansion -- make something like `processValue`
+
 describe('An object outline and object content', function () {
   before(function () {
     this.outline = {
@@ -22,7 +25,7 @@ describe('An object outline and object content', function () {
   describe('when fused', function () {
     before(function () {
       // TODO: This might become async during dev
-      // TODO: The reason is we might introduced events (e.g. expand)
+      // TODO: The reason is we might introduced events (e.g. expand, missingKey/missingProperty
       this.fusedObject = objectFusion({
         outline: this.outline,
         content: this.content
