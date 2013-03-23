@@ -19,7 +19,7 @@ describe('An object outline and object content', function () {
     };
   });
 
-  described('when fused', function () {
+  describe('when fused', function () {
     before(function () {
       // TODO: This might become async during dev
       // TODO: The reason is we might introduced events (e.g. expand)
@@ -36,6 +36,9 @@ describe('An object outline and object content', function () {
     it('returns a fused object', function () {
       var content = this.content;
       // DEV: Layout is subject to change...
+      // DEV: I feel like I should be using a standard markup format
+      // but am failing to see the reason/benefit
+      // For HTML, this would be attributes (value -> object) + childNodes (object -> array of objects)
       assert.deepEqual({
         'One': {
           'value': content.One,
