@@ -177,17 +177,36 @@ describe('An outline and content containing arrays', function () {
 // Kitchen sink
 describe('An reverse alphabetical outline', function () {
   before(function () {
+    // Write out a reserve alphabetical outline
     this.outline = {
       'z': true,
       'a': true
     };
-    console.log(Object.getOwnPropertyNames(this.outline));
-    console.log(Object.getOwnPropertyNames(JSON.parse(JSON.stringify(this.outline))));
+    this.content = {};
   });
 
   describe('when fused', function () {
-    it('preserves order', function () {
+    before(function () {
+      // Fused outline/content
+      this.fusedObject = objectFusion({
+        outline: this.outline,
+        content: this.content
+      });
+    });
 
+    it('preserves order', function () {
+      // Pluck the keys in order from the fusedObject
+      var fusedObject = this.fusedObject,
+          keys = [],
+          key;
+      for (key in fusedObject) {
+        if (fusedObject.hasOwnProperty(key)) {
+          keys.push(key);
+        }
+      }
+
+      // Assert the keys are still in reverse order
+      assert.deepEqual(keys, ['z', 'a']);
     });
   });
 });
