@@ -1,0 +1,35 @@
+{
+  "name": "object-fusion",
+  "description": "Combine outline and content into an object",
+  "version": "0.1.0",
+  "homepage": "https://github.com/twolfson/object-fusion",
+  "author": {
+    "name": "Todd Wolfson",
+    "email": "todd@twolfson.com",
+    "url": "http://twolfson.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/twolfson/object-fusion.git"
+  },
+  "bugs": {
+    "url": "https://github.com/twolfson/object-fusion/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/twolfson/object-fusion/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/object-fusion",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.17"
+  },
+  "keywords": []
+}
