@@ -6,6 +6,7 @@ var objectFusion = require('../lib/object-fusion.js'),
 
 describe('An object outline and object content', function () {
   before(function () {
+    // Create and save outline/content
     this.outline = {
       'One': {
         'is equal to one': true
@@ -24,6 +25,7 @@ describe('An object outline and object content', function () {
 
   describe('when fused', function () {
     before(function () {
+      // Fuse together outline/content
       // TODO: This might become async during dev
       // TODO: The reason is we might introduced events (e.g. expand, missingKey/missingProperty
       this.fusedObject = objectFusion({
@@ -37,6 +39,7 @@ describe('An object outline and object content', function () {
     });
 
     it('returns a fused object', function () {
+      // Assert the output is as we expected
       var content = this.content;
       // DEV: Layout is subject to change...
       // DEV: I feel like I should be using a standard markup format
@@ -58,11 +61,13 @@ describe('An object outline and object content', function () {
 
 describe('An outline and content containing keys', function () {
   before(function () {
+    // Create and save outline/content
     this.outline = {
       'Two': {
         'is equal to two': true
       }
     };
+
     this.content = {
       'Two': 'Dos',
       'Dos': function () {
@@ -74,8 +79,30 @@ describe('An outline and content containing keys', function () {
     };
   });
 
-  it('can be used for aliasing', function () {
+  describe('when fused', function () {
+    before(function () {
+      // Fused outline/content
+      this.fusedObject = objectFusion({
+        outline: this.outline,
+        content: this.content
+      });
+    });
 
+    it('can be used for aliasing', function () {
+      // Assert the output is what we anticipated
+      var content = this.content;
+      console.log(this.fusedObject);
+      assert.deepEqual({
+        'Two': {
+          'value': content.Dos,
+          'child': {
+            'is equal to two': {
+              'value': content['is equal to two']
+            }
+          }
+        }
+      }, this.fusedObject);
+    });
   });
 });
 
