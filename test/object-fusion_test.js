@@ -1,9 +1,7 @@
 var objectFusion = require('../lib/object-fusion.js'),
     assert = require('assert');
 
-// TODO: Test preservation of ordering
-// TODO: Test optional expansion -- make something like `processValue`
-
+// Basics
 describe('An object outline and object content', function () {
   before(function () {
     // Create and save outline/content
@@ -59,6 +57,7 @@ describe('An object outline and object content', function () {
   });
 });
 
+// Intermediate
 describe('An outline and content containing keys', function () {
   before(function () {
     // Create and save outline/content
@@ -171,6 +170,24 @@ describe('An outline and content containing arrays', function () {
           }
         }
       }, this.fusedObject);
+    });
+  });
+});
+
+// Kitchen sink
+describe('An reverse alphabetical outline', function () {
+  before(function () {
+    this.outline = {
+      'z': true,
+      'a': true
+    };
+    console.log(Object.getOwnPropertyNames(this.outline));
+    console.log(Object.getOwnPropertyNames(JSON.parse(JSON.stringify(this.outline))));
+  });
+
+  describe('when fused', function () {
+    it('preserves order', function () {
+
     });
   });
 });
