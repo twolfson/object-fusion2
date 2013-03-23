@@ -6,8 +6,7 @@ Combine outline and content into an object
 Install the module with: `npm install object-fusion`
 
 ```javascript
-var object_fusion = require('object-fusion');
-object_fusion.awesome(); // "awesome"
+var objectFusion = require('object-fusion');
 ```
 
 ## Documentation
@@ -17,11 +16,9 @@ _(Coming soon)_
 _(Coming soon)_
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/gruntjs/grunt).
-
-## Release History
-_(Nothing yet)_
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint your code using [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
 
 ## License
-Copyright (c) 2013 Todd Wolfson  
+Copyright (c) 2013 Todd Wolfson
+
 Licensed under the MIT license.

@@ -1,34 +1,51 @@
-var object_fusion = require('../lib/object-fusion.js');
+var objectFusion = require('../lib/object-fusion.js'),
+    assert = require('assert');
 
-/*
-  ======== A Handy Little Nodeunit Reference ========
-  https://github.com/caolan/nodeunit
+describe('An object outline and object content', function () {
+  before(function () {
+    this.outline = {
+      'One': {
+        'is equal to one': true
+      }
+    };
 
-  Test methods:
-    test.expect(numAssertions)
-    test.done()
-  Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
-*/
+    this.content = {
+      'One': function () {
+        this.one = 1;
+      },
+      'is equal to one': function () {
+        assert.strictEqual(this.one, 1);
+      }
+    };
+  });
 
-exports['awesome'] = {
-  setUp: function(done) {
-    // setup here
-    done();
-  },
-  'no args': function(test) {
-    test.expect(1);
-    // tests here
-    test.equal(object_fusion.awesome(), 'awesome', 'should be awesome.');
-    test.done();
-  }
-};
+  described('when fused', function () {
+    before(function () {
+      // TODO: This might become async during dev
+      // TODO: The reason is we might introduced events (e.g. expand)
+      this.fusedObject = objectFusion({
+        outline: this.outline,
+        content: this.content
+      });
+    });
+
+    it('returns an object', function () {
+      assert.strictEqual(typeof this.fusedObject, 'object');
+    });
+
+    it('returns a fused object', function () {
+      var content = this.content;
+      // DEV: Layout is subject to change...
+      assert.deepEqual({
+        'One': {
+          'value': content.One,
+          'child': {
+            'is equal to one': {
+              'value': content['is equal to one']
+            }
+          }
+        }
+      });
+    });
+  });
+});
