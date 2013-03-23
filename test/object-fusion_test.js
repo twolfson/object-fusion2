@@ -24,8 +24,6 @@ describe('An object outline and object content', function () {
   describe('when fused', function () {
     before(function () {
       // Fuse together outline/content
-      // TODO: This might become async during dev
-      // TODO: The reason is we might introduced events (e.g. expand, missingKey/missingProperty
       this.fusedObject = objectFusion({
         outline: this.outline,
         content: this.content
@@ -39,10 +37,6 @@ describe('An object outline and object content', function () {
     it('returns a fused object', function () {
       // Assert the output is as we expected
       var content = this.content;
-      // DEV: Layout is subject to change...
-      // DEV: I feel like I should be using a standard markup format
-      // but am failing to see the reason/benefit
-      // For HTML, this would be attributes (value -> object) + childNodes (object -> array of objects)
       assert.deepEqual({
         'One': {
           'value': content.One,
@@ -84,16 +78,16 @@ describe('An outline and content containing keys', function () {
       this.fusedObject = objectFusion({
         outline: this.outline,
         content: this.content,
-        // TODO: Make this a predefined property of object fusion
+        // TODO: Make this a predefined value of object fusion
         // TODO: Inside of `set`, have logic to expand this out from a string key `alias`
-        'property proxy': function (prop) {
+        'value proxy': function (val) {
           // If it is an alias, look it up
-          if (typeof prop === 'string') {
-            prop = this.getProperty(prop);
+          if (typeof val === 'string') {
+            val = this.getValue(val);
           }
 
-          // Return the property
-          return prop;
+          // Return the value
+          return val;
         }
       });
     });
@@ -144,16 +138,14 @@ describe('An outline and content containing arrays', function () {
       this.fusedObject = objectFusion({
         outline: this.outline,
         content: this.content,
-        // TODO: Make this a predefined property of object fusion
-        // TODO: Inside of `set`, have logic to expand this out from a string key `alias`
-        'property proxy': function (prop) {
+        'value proxy': function (val) {
           // If it is an array, expand it
-          if (Array.isArray(prop)) {
-            prop = prop.map(this.getProperty, this);
+          if (Array.isArray(val)) {
+            val = val.map(this.getValue, this);
           }
 
-          // Return the property
-          return prop;
+          // Return the value
+          return val;
         }
       });
     });
