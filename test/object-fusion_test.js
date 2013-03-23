@@ -42,7 +42,6 @@ describe('An object outline and object content', function () {
       // DEV: I feel like I should be using a standard markup format
       // but am failing to see the reason/benefit
       // For HTML, this would be attributes (value -> object) + childNodes (object -> array of objects)
-      console.log(this.fusedObject);
       assert.deepEqual({
         'One': {
           'value': content.One,
@@ -54,5 +53,34 @@ describe('An object outline and object content', function () {
         }
       }, this.fusedObject);
     });
+  });
+});
+
+describe('An outline and content containing keys', function () {
+  before(function () {
+    this.outline = {
+      'Two': {
+        'is equal to two': true
+      }
+    };
+    this.content = {
+      'Two': 'Dos',
+      'Dos': function () {
+        this.two = 2;
+      },
+      'is equal to two': function () {
+        assert.strictEqual(this.two, 2);
+      }
+    };
+  });
+
+  it('can be used for aliasing', function () {
+
+  });
+});
+
+describe('An outline and content containing arrays', function () {
+  it('can be used for expansion', function () {
+
   });
 });
