@@ -85,6 +85,8 @@ describe('An outline and content containing keys', function () {
       this.fusedObject = objectFusion({
         outline: this.outline,
         content: this.content,
+        // TODO: Make this a predefined property of object fusion
+        // TODO: Inside of `set`, have logic to expand this out from a string key `alias`
         'property proxy': function (prop) {
           // If it is an alias, look it up
           if (typeof prop === 'string') {
@@ -100,7 +102,6 @@ describe('An outline and content containing keys', function () {
     // Assert the output is what we anticipated
     it('observes aliasing', function () {
       var content = this.content;
-      console.log(this.fusedObject);
       assert.deepEqual({
         'Two': {
           'value': content.Dos,
@@ -116,7 +117,60 @@ describe('An outline and content containing keys', function () {
 });
 
 describe('An outline and content containing arrays', function () {
-  it('can be used for expansion', function () {
+  before(function () {
+    // Create and save outline/content
+    this.outline = {
+      'One plus one': {
+        'is equal to two': true
+      }
+    };
 
+    this.content = {
+      'One': function () {
+        this.sum = 1;
+      },
+      'plus one': function () {
+        this.sum += 1;
+      },
+      'One plus one': ['One', 'plus one'],
+      'is equal to two': function () {
+        assert.strictEqual(this.sum, 2);
+      }
+    };
+  });
+
+  describe('fused with expansion', function () {
+    before(function () {
+      // Fused outline/content
+      this.fusedObject = objectFusion({
+        outline: this.outline,
+        content: this.content,
+        // TODO: Make this a predefined property of object fusion
+        // TODO: Inside of `set`, have logic to expand this out from a string key `alias`
+        'property proxy': function (prop) {
+          // If it is an array, expand it
+          if (Array.isArray(prop)) {
+            prop = prop.map(this.getProperty, this);
+          }
+
+          // Return the property
+          return prop;
+        }
+      });
+    });
+
+    it('observes expansion', function () {
+      var content = this.content;
+      assert.deepEqual({
+        'One plus one': {
+          'value': [content.One, content['plus one']],
+          'child': {
+            'is equal to two': {
+              'value': content['is equal to two']
+            }
+          }
+        }
+      }, this.fusedObject);
+    });
   });
 });
