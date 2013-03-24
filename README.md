@@ -86,6 +86,8 @@ Lastly, there are proxies available which allow for key aliasing and array expan
 ## Examples
 [Getting started][getting-started] demonstrated basic usability. Here is an advanced case using aliasing and expansion.
 
+[getting-started]: #getting-started
+
 ```javascript
 // Create an outline and content to fuse
 var outline = {
