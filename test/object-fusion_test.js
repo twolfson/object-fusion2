@@ -78,17 +78,7 @@ describe('An outline and content containing keys', function () {
       this.fusedObject = objectFusion({
         outline: this.outline,
         content: this.content,
-        // TODO: Make this a predefined value of object fusion
-        // TODO: Inside of `set`, have logic to expand this out from a string key `alias`
-        'value proxy': function (val) {
-          // If it is an alias, look it up
-          if (typeof val === 'string') {
-            val = this.getValue(val);
-          }
-
-          // Return the value
-          return val;
-        }
+        'value proxy': objectFusion.aliasProxy
       });
     });
 
@@ -138,15 +128,7 @@ describe('An outline and content containing arrays', function () {
       this.fusedObject = objectFusion({
         outline: this.outline,
         content: this.content,
-        'value proxy': function (val) {
-          // If it is an array, expand it
-          if (Array.isArray(val)) {
-            val = val.map(this.getValue, this);
-          }
-
-          // Return the value
-          return val;
-        }
+        'value proxy': objectFusion.expandProxy
       });
     });
 
