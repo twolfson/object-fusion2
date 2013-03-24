@@ -86,7 +86,60 @@ Lastly, there are proxies available which allow for key aliasing and array expan
 ## Examples
 [Getting started][getting-started] demonstrated basic usability. Here is an advanced case using aliasing and expansion.
 
-TODO: Example of aliasAndExpandProxy in action
+```javascript
+// Create an outline and content to fuse
+var outline = {
+  // Spanish for: One plus two
+  'Uno mas dos': {
+    // Spanish for: is equal to three
+    'son tres': true
+  }
+};
+
+var content = {
+  'Uno mas dos': ['Uno', 'mas dos'],
+  'Uno': 'One',
+  'One': function () {
+    this.sum = 1;
+  },
+  'mas done': 'plus two',
+  'plus two': function () {
+    this.sum += 2;
+  },
+  'son tres': 'is equal to three',
+  'is equal to three': function () {
+    assert.strictEqual(this.sum, 3);
+  }
+};
+
+// Fuse them together
+var fusedObject = objectFusion({
+      outline: outline,
+      content: content,
+      'value proxy': objectFusion.aliasAndExpandProxy
+    });
+
+// The result looks like
+{
+  'Uno mas dos': {
+    'value': [
+      function () {
+        this.sum = 1;
+      },
+      function () {
+        this.sum += 2;
+      }
+    ],
+    'child': {
+      'son tres': {
+        'value': function () {
+          assert.strictEqual(this.sum, 3);
+        }
+      }
+    }
+  }
+}
+```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint your code using [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
