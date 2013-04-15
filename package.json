@@ -1,7 +1,7 @@
 {
   "name": "object-fusion",
   "description": "Combine outline and content into an object",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/twolfson/object-fusion",
   "author": {
     "name": "Todd Wolfson",
@@ -29,7 +29,8 @@
     "test": "mocha"
   },
   "devDependencies": {
-    "grunt": "~0.3.17"
+    "grunt": "~0.3.17",
+    "mocha": "~1.9.0"
   },
   "keywords": [
     "object",
