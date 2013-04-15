@@ -93,10 +93,8 @@ Lastly, there are proxies available which allow for key aliasing and array expan
 
 - `objectFusion.aliasProxy` - Allows for aliasing of content values (e.g. `{'uno': 'one'}`)
     - Emits `this.emit('content aliased', key, val);` when aliasing occurs
-
 - `objectFusion.expandProxy` - Allows for expansion of content values (e.g. `{'two': ['one', 'plusOne']}`
     - Emits `this.emit('content expanded', key, val);` when expansion occurs
-
 - `objectFusion.aliasAndExpandProxy` - Allows for both aliasing and expansion of content values
 
 ## Examples
