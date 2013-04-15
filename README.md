@@ -81,18 +81,21 @@ Fuser.translate(obj) - Walk obj (depth-first), looking up value and child of eac
   // this.get('value key') - the key used for accessing the value
   // this.get('child key') - the key used for accessing the child
   // this.get('node') - the node being returned
+
+// Emits `this.emit('value key used', valueKey);` when a value key is used
+// Emits `this.emit('value key not found', valueKey);` when a value key's value is not found
+// Emits `this.emit('child key used', childKey);` when a child key is used
+// Emits `this.emit('child key not found', childKey);` when a child key's value is not found
 ```
 
 Lastly, there are proxies available which allow for key aliasing and array expansion.
 
 - `objectFusion.aliasProxy` - Allows for aliasing of content values (e.g. `{'uno': 'one'}`)
     - Emits `this.emit('content aliased', key, val);` when aliasing occurs
-    - Emits `this.emit('value key used', valueKey);` when
 
-  // If the value is not defined, emit a key not found
-  if (!val) {
-    this.emit('value key not found', valueKey);
 - `objectFusion.expandProxy` - Allows for expansion of content values (e.g. `{'two': ['one', 'plusOne']}`
+    - Emits `this.emit('content expanded', key, val);` when expansion occurs
+
 - `objectFusion.aliasAndExpandProxy` - Allows for both aliasing and expansion of content values
 
 ## Examples
