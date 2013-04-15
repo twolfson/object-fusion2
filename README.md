@@ -60,6 +60,7 @@ objectFusion(params);
  * @param {Object} params.content Key/value pairs that correspond to those in params.outline
  * @param {Function} [params['value proxy']] Optional proxy for `value` once looked up
  * @param {Function} [params['child proxy']] Optional proxy for `child` once looked up
+ * @param {Object} [params['events']] Optional channel -> listener object for emitted events
  * @returns {Object} Combined object fused by params.outline values to params.content keys
  */
 ```
@@ -75,11 +76,22 @@ Fuser.addValues(valueObj) - Add object of values for translation
 Fuser.getValue(name) - Look up (and proxy) value by name (uses those stored via Fuser.addValue/addValues)
 Fuser.getChild(obj, name) - Look up (and proxy) child from obj by name
 Fuser.translate(obj) - Walk obj (depth-first), looking up value and child of each node
+// Fuser inherits from node's EventEmitter so feel free to use those methods
+// During looping, we expose:
+  // this.get('value key') - the key used for accessing the value
+  // this.get('child key') - the key used for accessing the child
+  // this.get('node') - the node being returned
 ```
 
 Lastly, there are proxies available which allow for key aliasing and array expansion.
 
 - `objectFusion.aliasProxy` - Allows for aliasing of content values (e.g. `{'uno': 'one'}`)
+    - Emits `this.emit('content aliased', key, val);` when aliasing occurs
+    - Emits `this.emit('value key used', valueKey);` when
+
+  // If the value is not defined, emit a key not found
+  if (!val) {
+    this.emit('value key not found', valueKey);
 - `objectFusion.expandProxy` - Allows for expansion of content values (e.g. `{'two': ['one', 'plusOne']}`
 - `objectFusion.aliasAndExpandProxy` - Allows for both aliasing and expansion of content values
 
