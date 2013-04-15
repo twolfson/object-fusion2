@@ -76,11 +76,12 @@ Fuser.addValues(valueObj) - Add object of values for translation
 Fuser.getValue(name) - Look up (and proxy) value by name (uses those stored via Fuser.addValue/addValues)
 Fuser.getChild(obj, name) - Look up (and proxy) child from obj by name
 Fuser.translate(obj) - Walk obj (depth-first), looking up value and child of each node
+
 // Fuser inherits from node's EventEmitter so feel free to use those methods
 // During looping, we expose:
-  // this.get('value key') - the key used for accessing the value
-  // this.get('child key') - the key used for accessing the child
-  // this.get('node') - the node being returned
+  // `this.get('value key');` - the key used for accessing the value
+  // `this.get('child key');` - the key used for accessing the child
+  // `this.get('node');` - the node being returned
 
 // Emits `this.emit('value key used', valueKey);` when a value key is used
 // Emits `this.emit('value key not found', valueKey);` when a value key's value is not found
