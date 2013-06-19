@@ -1,4 +1,4 @@
-# object-fusion
+# object-fusion [![Donate on Gittip](http://badgr.co/gittip/twolfson.png)](https://www.gittip.com/twolfson/)
 
 Combine outline and content into an object
 
