@@ -1,78 +1,37 @@
+// Load in our library and dependencies
 var objectFusion2 = require('../lib/object-fusion2.js'),
-    assert = require('assert');
+    glob = require('glob'),
+    test = require('tape');
 
-// Basics
-describe('An object outline and object content', function () {
-  before(function () {
-    // Create and save outline/content
-    this.input = require('./basic.input');
-  });
+// Find all input/output files
+var inputFiles = glob.sync('*.input.*', {cwd: __dirname});
 
-  describe('when fused', function () {
-    before(function () {
-      // Fuse together outline/content
-      this.fusedObject = objectFusion2({
-        outline: this.input.outline,
-        content: this.input.content
-      });
-    });
+// Iterate over them
+inputFiles.forEach(function beginTest (inputFile) {
+  // Begin the test
+  test('Testing object-fusion on "' + inputFile + '"', function testFn (t) {
+    // Load in the input and output files
+    var outputFile = inputFile.replace('input', 'output'),
+        input = require('./' + inputFile),
+        expectedOutput = require('./' + outputFile);
 
-    it('returns an object', function () {
-      assert.strictEqual(typeof this.fusedObject, 'object');
-    });
+    // If there is a value proxy, swap it out
+    var valueProxy = input['value proxy'];
+    if (valueProxy) {
+      if (valueProxy === 'alias') {
+        input['value proxy'] = objectFusion2.aliasProxy;
+      } else if (valueProxy === 'expand') {
+        input['value proxy'] = objectFusion2.expandProxy;
+      }
+    }
 
-    it('returns a fused object', function () {
-      // Assert the output is as we expected
-      var content = this.content;
-      assert.deepEqual(require('./basic.output'), this.fusedObject);
-    });
-  });
-});
+    // Process the input via object-fusion
+    var actualOutput = objectFusion2(input);
 
-// Intermediate
-describe('An outline and content containing keys', function () {
-  before(function () {
-    // Create and save outline/content
-    this.input = require('./aliasing.input');
-  });
+    // Compare it to the output
+    t.deepEqual(actualOutput, expectedOutput);
 
-  describe('fused with aliasing', function () {
-    before(function () {
-      // Fused outline/content
-      this.fusedObject = objectFusion2({
-        outline: this.input.outline,
-        content: this.input.content,
-        'value proxy': objectFusion2.aliasProxy
-      });
-    });
-
-    // Assert the output is what we anticipated
-    it('observes aliasing', function () {
-      var content = this.content;
-      assert.deepEqual(require('./aliasing.output'), this.fusedObject);
-    });
-  });
-});
-
-describe('An outline and content containing arrays', function () {
-  before(function () {
-    // Create and save outline/content
-    this.input = require('./expansion.input');
-  });
-
-  describe('fused with expansion', function () {
-    before(function () {
-      // Fused outline/content
-      this.fusedObject = objectFusion2({
-        outline: this.input.outline,
-        content: this.input.content,
-        'value proxy': objectFusion2.expandProxy
-      });
-    });
-
-    it('observes expansion', function () {
-      var content = this.content;
-      assert.deepEqual(require('./expansion.output'), this.fusedObject);
-    });
+    // End the test
+    t.end();
   });
 });
