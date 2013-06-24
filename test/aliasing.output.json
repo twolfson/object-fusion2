@@ -1,9 +1,9 @@
 {
   "Two": {
-    "value": content.Dos,
+    "value": "ALIAS_DOS",
     "child": {
       "is equal to two": {
-        "value": content["is equal to two"]
+        "value": "ALIAS_TWO"
       }
     }
   }

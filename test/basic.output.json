@@ -1,0 +1,10 @@
+{
+  "One": {
+    "value": "BASIC_ONE",
+    "child": {
+      "is equal to one": {
+        "value": "BASIC_TWO"
+      }
+    }
+  }
+}

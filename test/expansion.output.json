@@ -1,9 +1,9 @@
 {
   "One plus one": {
-    "value": [content.One, content["plus one"]],
+    "value": ["EXPANSION_ONE", "EXPANSION_PLUS_ONE"],
     "child": {
       "is equal to two": {
-        "value": content["is equal to two"]
+        "value": "EXPANSION_TWO"
       }
     }
   }

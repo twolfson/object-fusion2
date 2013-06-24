@@ -25,7 +25,7 @@ describe('An object outline and object content', function () {
     it('returns a fused object', function () {
       // Assert the output is as we expected
       var content = this.content;
-      assert.deepEqual(, this.fusedObject);
+      assert.deepEqual(require('./basic.output'), this.fusedObject);
     });
   });
 });
@@ -51,7 +51,7 @@ describe('An outline and content containing keys', function () {
     // Assert the output is what we anticipated
     it('observes aliasing', function () {
       var content = this.content;
-      assert.deepEqual(, this.fusedObject);
+      assert.deepEqual(require('./aliasing.output'), this.fusedObject);
     });
   });
 });
@@ -75,7 +75,7 @@ describe('An outline and content containing arrays', function () {
 
     it('observes expansion', function () {
       var content = this.content;
-      assert.deepEqual(, this.fusedObject);
+      assert.deepEqual(require('./expansion.output'), this.fusedObject);
     });
   });
 });
