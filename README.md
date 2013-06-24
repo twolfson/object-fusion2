@@ -12,7 +12,7 @@ Install the module with: `npm install object-fusion2`
 
 ```javascript
 // Load in objectFusion
-var objectFusion = require('object-fusion2');
+var objectFusion2 = require('object-fusion2');
 
 __TODO__
 ```

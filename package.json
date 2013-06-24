@@ -21,7 +21,7 @@
       "url": "https://github.com/twolfson/object-fusion2/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "lib/object-fusion",
+  "main": "lib/object-fusion2",
   "engines": {
     "node": ">= 0.6.0"
   },

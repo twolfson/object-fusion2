@@ -1,0 +1,10 @@
+{
+  "One plus one": {
+    "value": [content.One, content["plus one"]],
+    "child": {
+      "is equal to two": {
+        "value": content["is equal to two"]
+      }
+    }
+  }
+}

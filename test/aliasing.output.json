@@ -1,0 +1,10 @@
+{
+  "Two": {
+    "value": content.Dos,
+    "child": {
+      "is equal to two": {
+        "value": content["is equal to two"]
+      }
+    }
+  }
+}
