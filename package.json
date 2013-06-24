@@ -26,12 +26,11 @@
     "node": ">= 0.6.0"
   },
   "scripts": {
-    "test": "node test/object-fusion_test.js"
+    "test": "mocha"
   },
   "devDependencies": {
     "grunt": "~0.3.17",
     "mocha": "~1.9.0",
-    "tape": "~1.0.4",
     "glob": "~3.2.1"
   },
   "keywords": [
