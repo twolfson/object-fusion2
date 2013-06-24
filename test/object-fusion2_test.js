@@ -4,7 +4,8 @@ var objectFusion2 = require('../lib/object-fusion2.js'),
     glob = require('glob');
 
 // Find all input/output files
-var inputFiles = glob.sync('*.input.*', {cwd: __dirname});
+var inputFiles = glob.sync('basic.input.*', {cwd: __dirname});
+// var inputFiles = glob.sync('*.input.*', {cwd: __dirname});
 
 // Iterate over them
 describe('object-fusion', function () {
