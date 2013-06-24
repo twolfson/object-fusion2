@@ -2,11 +2,8 @@
   "outline": {
     "One": [
       "is equal to one",
-      {
-        "plus one": ["is equal to two"]
-      }, {
-        "plus two": ["is equal to three"]
-      }
+      {"plus one": ["is equal to two"]},
+      {"plus two": ["is equal to three"]}
     ]
   },
   "content": {
