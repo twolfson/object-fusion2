@@ -5,20 +5,8 @@ var objectFusion = require('../lib/object-fusion.js'),
 describe('An object outline and object content', function () {
   before(function () {
     // Create and save outline/content
-    this.outline = {
-      'One': {
-        'is equal to one': true
-      }
-    };
-
-    this.content = {
-      'One': function () {
-        this.one = 1;
-      },
-      'is equal to one': function () {
-        assert.strictEqual(this.one, 1);
-      }
-    };
+    this.outline = require('./basic.outline');
+    this.content = require('./basic.content');
   });
 
   describe('when fused', function () {
@@ -55,21 +43,8 @@ describe('An object outline and object content', function () {
 describe('An outline and content containing keys', function () {
   before(function () {
     // Create and save outline/content
-    this.outline = {
-      'Two': {
-        'is equal to two': true
-      }
-    };
-
-    this.content = {
-      'Two': 'Dos',
-      'Dos': function () {
-        this.two = 2;
-      },
-      'is equal to two': function () {
-        assert.strictEqual(this.two, 2);
-      }
-    };
+    this.outline = require('./aliasing.outline');
+    this.content = require('./aliasing.content');
   });
 
   describe('fused with aliasing', function () {
@@ -102,24 +77,8 @@ describe('An outline and content containing keys', function () {
 describe('An outline and content containing arrays', function () {
   before(function () {
     // Create and save outline/content
-    this.outline = {
-      'One plus one': {
-        'is equal to two': true
-      }
-    };
-
-    this.content = {
-      'One': function () {
-        this.sum = 1;
-      },
-      'plus one': function () {
-        this.sum += 1;
-      },
-      'One plus one': ['One', 'plus one'],
-      'is equal to two': function () {
-        assert.strictEqual(this.sum, 2);
-      }
-    };
+    this.outline = require('./expansion.outline');
+    this.content = require('./expansion.content');
   });
 
   describe('fused with expansion', function () {
