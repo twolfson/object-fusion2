@@ -1,0 +1,20 @@
+{
+  "outline": {
+    "One": [
+      "is equal to one",
+      {
+        "plus one": ["is equal to two"]
+      }, {
+        "plus two": ["is equal to three"]
+      }
+    ]
+  },
+  "content": {
+    "One": "ADVANCED_ONE",
+    "plus one": "ADVANCED_PLUS_ONE",
+    "plus two": "ADVANCED_PLUS_TWO",
+    "is equal to one": "ADVANCED_EQUAL_ONE",
+    "is equal to two": "ADVANCED_EQUAL_TWO",
+    "is equal to three": "ADVANCED_EQUAL_THREE"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "nodeName": "One",
+  "value": "ADVANCED_ONE",
+  "childNodes": [{
+    "nodeName": "is equal to one",
+    "value": "ADVANCED_EQUAL_ONE"
+  }, {
+    "nodeName": "plus one",
+    "value": "ADVANCED_PLUS_ONE",
+    "childNodes": [{
+      "nodeName": "is equal to two",
+      "value": "ADVANCED_EQUAL_TWO"
+    }]
+  }, {
+    "nodeName": "plus two",
+    "value": "ADVANCED_PLUS_TWO",
+    "childNodes": [{
+      "nodeName": "is equal to three",
+      "value": "ADVANCED_EQUAL_THREE"
+    }]
+  }]
+}
