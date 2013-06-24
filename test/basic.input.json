@@ -1,8 +1,8 @@
 {
   "outline": {
-    "One": {
-      "is equal to one": true
-    }
+    "One": [
+      "is equal to one"
+    ]
   },
   "content": {
     "One": "BASIC_ONE",
