@@ -5,16 +5,15 @@ var objectFusion2 = require('../lib/object-fusion2.js'),
 describe('An object outline and object content', function () {
   before(function () {
     // Create and save outline/content
-    this.outline = require('./basic.outline');
-    this.content = require('./basic.content');
+    this.input = require('./basic.input');
   });
 
   describe('when fused', function () {
     before(function () {
       // Fuse together outline/content
       this.fusedObject = objectFusion2({
-        outline: this.outline,
-        content: this.content
+        outline: this.input.outline,
+        content: this.input.content
       });
     });
 
@@ -34,16 +33,15 @@ describe('An object outline and object content', function () {
 describe('An outline and content containing keys', function () {
   before(function () {
     // Create and save outline/content
-    this.outline = require('./aliasing.outline');
-    this.content = require('./aliasing.content');
+    this.input = require('./aliasing.input');
   });
 
   describe('fused with aliasing', function () {
     before(function () {
       // Fused outline/content
       this.fusedObject = objectFusion2({
-        outline: this.outline,
-        content: this.content,
+        outline: this.input.outline,
+        content: this.input.content,
         'value proxy': objectFusion2.aliasProxy
       });
     });
@@ -59,16 +57,15 @@ describe('An outline and content containing keys', function () {
 describe('An outline and content containing arrays', function () {
   before(function () {
     // Create and save outline/content
-    this.outline = require('./expansion.outline');
-    this.content = require('./expansion.content');
+    this.input = require('./expansion.input');
   });
 
   describe('fused with expansion', function () {
     before(function () {
       // Fused outline/content
       this.fusedObject = objectFusion2({
-        outline: this.outline,
-        content: this.content,
+        outline: this.input.outline,
+        content: this.input.content,
         'value proxy': objectFusion2.expandProxy
       });
     });

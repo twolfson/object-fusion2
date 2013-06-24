@@ -1,0 +1,14 @@
+{
+  "outline": {
+    "One plus one": {
+      "is equal to two": true
+    }
+  },
+  "content": {
+    "One": "EXPANSION_ONE",
+    "plus one": "EXPANSION_PLUS_ONE",
+    "One plus one": ["One", "plus one"],
+    "is equal to two": "EXPANSION_TWO"
+  },
+  "value proxy": "expand"
+}

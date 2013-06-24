@@ -1,0 +1,13 @@
+{
+  "outline": {
+    "Two": {
+      "is equal to two": true
+    }
+  },
+  "content": {
+    "Two": "Dos",
+    "Dos": ["ALIAS_DOS"],
+    "is equal to two": ["ALIAS_TWO"]
+  },
+  "value proxy": "alias"
+}

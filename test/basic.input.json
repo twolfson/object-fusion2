@@ -1,0 +1,11 @@
+{
+  "outline": {
+    "One": {
+      "is equal to one": true
+    }
+  },
+  "content": {
+    "One": "BASIC_ONE",
+    "is equal to one": "BASIC_TWO"
+  }
+}
