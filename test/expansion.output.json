@@ -1,10 +1,8 @@
 {
-  "One plus one": {
-    "value": ["EXPANSION_ONE", "EXPANSION_PLUS_ONE"],
-    "child": {
-      "is equal to two": {
-        "value": "EXPANSION_TWO"
-      }
-    }
-  }
+  "nodeName": "One plus one",
+  "value": ["EXPANSION_ONE", "EXPANSION_PLUS_ONE"],
+  "childNodes": [{
+    "nodeName": "is equal to two",
+    "value": "EXPANSION_TWO"
+  }]
 }

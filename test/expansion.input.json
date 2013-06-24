@@ -1,8 +1,6 @@
 {
   "outline": {
-    "One plus one": {
-      "is equal to two": true
-    }
+    "One plus one": ["is equal to two"]
   },
   "content": {
     "One": "EXPANSION_ONE",

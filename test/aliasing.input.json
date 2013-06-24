@@ -1,8 +1,6 @@
 {
   "outline": {
-    "Two": {
-      "is equal to two": true
-    }
+    "Two": ["is equal to two"]
   },
   "content": {
     "Two": "Dos",

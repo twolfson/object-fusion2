@@ -1,10 +1,8 @@
 {
-  "Two": {
-    "value": ["ALIAS_DOS"],
-    "child": {
-      "is equal to two": {
-        "value": ["ALIAS_TWO"]
-      }
-    }
-  }
+  "nodeName": "Two",
+  "value": ["ALIAS_DOS"],
+  "childNodes": [{
+    "nodeName": "is equal to two",
+    "value": ["ALIAS_TWO"]
+  }]
 }
